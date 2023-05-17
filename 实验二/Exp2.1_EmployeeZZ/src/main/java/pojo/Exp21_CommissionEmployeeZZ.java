@@ -1,16 +1,15 @@
 package pojo;
 
-import method.GetSalaryPerSale;
+import method.Exp21_GetSalaryPerSaleZZ;
 
 import java.util.Calendar;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * @author 朱喆
  * @version 1.0
  */
-public class CommissionEmployee extends Employee implements GetSalaryPerSale {
+public class Exp21_CommissionEmployeeZZ extends Employee implements Exp21_GetSalaryPerSaleZZ {
     public static double redEnvelope = 100;
     @Override
     public int salaryMethod() {

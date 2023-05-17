@@ -1,26 +1,22 @@
 
-import inter.Common;
+import inter.Exp22_CommonZZ;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ComputeTime {
-
+public class Exp22_ComputeTimeZZ {
     public static void main(String[] args) {
         String[] s = new String[3];
         String vehicle;
-        Common common = null;
-
+        Exp22_CommonZZ common = null;
         while(common == null){
             try {
                 System.out.println("选择交通工具 : ");
                 vehicle = new Scanner(System.in).next();
-                common= (Common) Class.forName("pojo." + vehicle).newInstance();
+                common= (Exp22_CommonZZ) Class.forName("pojo." + vehicle).newInstance();
             }catch (ClassNotFoundException | InstantiationException | IllegalAccessException e){
-                System.out.println("class not found");
+                System.out.println("没有这个类");
             }
         }
-
         System.out.print("参数 A: ");
         s[0] = new Scanner(System.in).next();
         System.out.print("参数 B: ");

@@ -1,6 +1,6 @@
 package pojo;
 
-import method.GetSalaryPerHour;
+import method.Exp21_GetSalaryPerHourZZ;
 
 import java.util.Calendar;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author 朱喆
  * @version 1.0
  */
-public class HourlyEmployee extends Employee implements GetSalaryPerHour {
+public class Exp21_HourlyEmployeeZZ extends Employee implements Exp21_GetSalaryPerHourZZ {
     public static double redEnvelope = 100;
     public static int standardWorkTime = 160;
     int workHour;

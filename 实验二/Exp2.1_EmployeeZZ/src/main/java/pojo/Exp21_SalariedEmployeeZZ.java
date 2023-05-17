@@ -1,6 +1,6 @@
 package pojo;
 
-import method.GetSalaryPerMonth;
+import method.Exp21_GetSalaryPerMonthZZ;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author 朱喆
  * @version 1.0
  */
-public class SalariedEmployee extends Employee implements GetSalaryPerMonth {
+public class Exp21_SalariedEmployeeZZ extends Employee implements Exp21_GetSalaryPerMonthZZ {
     public static int redEnvelope = 100;
 
     @Override

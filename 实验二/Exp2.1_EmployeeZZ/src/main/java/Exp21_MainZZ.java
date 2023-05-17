@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * @author 朱喆
  * @version 1.0
  */
-public class Main {
+public class Exp21_MainZZ {
 
     public static int choice;
 
@@ -97,10 +97,10 @@ public class Main {
 
     public static void show(int i) {
         Employee[] Data = new Employee[4];
-        Data[0] = new SalariedEmployee();
-        Data[1] = new HourlyEmployee();
-        Data[2] = new CommissionEmployee();
-        Data[3] = new BasePlusCommissionEmployee();
+        Data[0] = new Exp21_SalariedEmployeeZZ();
+        Data[1] = new Exp21_HourlyEmployeeZZ();
+        Data[2] = new Exp21_CommissionEmployeeZZ();
+        Data[3] = new Exp21_BasePlusCommissionEmployeeZZ();
 
         Data[i].id = get_number();
         Data[i].name = get_name();
@@ -116,10 +116,10 @@ public class Main {
 
     public static void main(String[] args) {
         Employee[] Data = new Employee[4];
-        Data[0] = new SalariedEmployee();
-        Data[1] = new HourlyEmployee();
-        Data[2] = new CommissionEmployee();
-        Data[3] = new BasePlusCommissionEmployee();
+        Data[0] = new Exp21_SalariedEmployeeZZ();
+        Data[1] = new Exp21_HourlyEmployeeZZ();
+        Data[2] = new Exp21_CommissionEmployeeZZ();
+        Data[3] = new Exp21_BasePlusCommissionEmployeeZZ();
 
         System.out.println("请输入员工类型：1.领固定月薪 2.计时取酬 3.按销售额提成 4.带底薪并按销售额提成 0.退出");
         choice = choice();
