@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Exp1.1_HellowordZZ" />
+        <module name="Exp1.2_DisorderlyProcessingZZ" />
+        <module name="Exp1.3_Two-dimensionalArrayZZ" />
+        <module name="Exp1.4_BusZZ" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Exp2.1_EmployeeZZ" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
