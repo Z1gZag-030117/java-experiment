@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Exp2.1_EmployeeZZ" />
         <module name="Exp2.3_GuessingNumbersZZ" />
+        <module name="Exp2.4_SingGameZZ" />
+        <module name="Exp2.1_EmployeeZZ" />
         <module name="Exp2.2_VehicleZZ" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
       <module name="Exp2.1_EmployeeZZ" target="1.8" />
       <module name="Exp2.2_VehicleZZ" target="1.8" />
       <module name="Exp2.3_GuessingNumbersZZ" target="1.8" />
+      <module name="Exp2.4_SingGameZZ" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
