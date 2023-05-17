@@ -72,7 +72,7 @@ public class Main {
             }
             return birthYear;
         } catch (InputMismatchException e) {
-            System.out.println("请输入数字！");
+            System.out.println("请输入合法数字！");
             return get_birthYear();
         }
     }
@@ -89,7 +89,7 @@ public class Main {
             }
             return birthMonth;
         } catch (InputMismatchException e) {
-            System.out.println("请输入数字！");
+            System.out.println("请输合法入数字！");
             return get_birthMonth();
         }
     }
