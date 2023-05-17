@@ -14,7 +14,8 @@ public class Car007 implements Common {
             System.out.println("³ıÊıÎª0");
             return  0;
         }
-        else
+        else{
             return a*b/c;
+        }
     }
 }
