@@ -5,10 +5,10 @@ import java.util.Scanner;
  * @author Öì†´
  * @version 1.0
  */
-public class InputScore {
-    DelScore del;
+public class Exp24_InputScoreZZ {
+    Exp24_DelScoreZZ del;
 
-    InputScore(DelScore del) {
+    Exp24_InputScoreZZ(Exp24_DelScoreZZ del) {
         this.del = del;
     }
 

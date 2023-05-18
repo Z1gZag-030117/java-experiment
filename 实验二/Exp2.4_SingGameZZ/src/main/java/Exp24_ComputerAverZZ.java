@@ -2,7 +2,7 @@
  * @author Öì†´
  * @version 1.0
  */
-public class ComputerAver {
+public class Exp24_ComputerAverZZ {
 
     public void giveAver(double [] b) {
         double sum = 0;

@@ -2,12 +2,10 @@
  * @author Öì†´
  * @version 1.0
  */
-public class SingGame {
+public class Exp24_SingGameZZ {
 
     public static void main(String[] args) {
-        Line line = new Line();
+        Exp24_LineZZ line = new Exp24_LineZZ();
         line.givePersonScore();
     }
-
-
 }

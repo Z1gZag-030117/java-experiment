@@ -4,10 +4,10 @@ import java.util.Arrays;
  * @author Öì†´
  * @version 1.0
  */
-public class DelScore {
+public class Exp24_DelScoreZZ {
 
-    ComputerAver computerAver;
-    public DelScore(ComputerAver computerAver) {
+    Exp24_ComputerAverZZ computerAver;
+    public Exp24_DelScoreZZ(Exp24_ComputerAverZZ computerAver) {
         this.computerAver=computerAver;
     }
 
