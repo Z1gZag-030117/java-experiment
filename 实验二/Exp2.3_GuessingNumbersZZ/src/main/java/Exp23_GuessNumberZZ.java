@@ -6,8 +6,8 @@ public class Exp23_GuessNumberZZ {
     public static int choice;
     public static int point = 0;
 
-
-    public void judge1or2() {
+    //判断输入是否为1或2
+    public void judge() {
         try {
             Scanner sc = new Scanner(System.in);
             choice = sc.nextInt();
@@ -16,13 +16,13 @@ public class Exp23_GuessNumberZZ {
                 case 2: System.exit(0);
                 default: {
                     System.out.println("请输入1 or 2：");
-                    judge1or2();
+                    judge();
                 }
             }
         }
         catch (InputMismatchException e) {   //非整数(小数、字符)会被捕获
             System.out.println("请输入整数(1 or 2)!");
-            judge1or2();
+            judge();
         }
     }
 
@@ -53,8 +53,7 @@ public class Exp23_GuessNumberZZ {
             if (inputNumber < 0 || inputNumber > 99) {   //控制输入数字的范围
                 System.out.println("请输入[0,99]以内的整数!");
                 return start(num, count);
-            }
-            else {
+            } else {
                 if (inputNumber < num) {
                     count++;
                     if (count == 3) {   //count为3时结束猜数并公布正确数字
@@ -65,8 +64,7 @@ public class Exp23_GuessNumberZZ {
                     }
                     System.out.println("太小了，请重新输入：");
                     return start(num, count);
-                }
-                else if (inputNumber > num) {
+                } else if (inputNumber > num) {
                     count++;
                     if (count == 3) {
                         System.out.println("三次都没有猜中，游戏结束！");
@@ -76,15 +74,14 @@ public class Exp23_GuessNumberZZ {
                     }
                     System.out.println("太大了，请重新输入：");
                     return start(num, count);
-                }
-                else {
+                } else {
                     count++;
                     System.out.println("恭喜你，猜对了！");
                     return count;
                 }
             }
-        } catch (InputMismatchException e) {
-            System.out.println("请输入整数!");
+        } catch (InputMismatchException | NegativeArraySizeException e) {
+            System.out.println("请输入正整数!");
             count = start(num, count);
             return count;
         }
@@ -102,16 +99,15 @@ public class Exp23_GuessNumberZZ {
         System.out.println("1.开始 2.退出");
         System.out.println("初始分数："+point);
         Exp23_GuessNumberZZ begin = new Exp23_GuessNumberZZ();
-        begin.judge1or2();
+        begin.judge();
         int num;
-        num = new Random().nextInt(99); //创建0-99的随机数
-//        System.out.println("生成的随机数(测试)："+num);
+        num = new Random().nextInt(99);
+        //System.out.println(num);
         begin.guess(num);
         do {
             System.out.println("1.再来一次 2.退出");
-            begin.judge1or2();
+            begin.judge();
             num = new Random().nextInt(99);
-//            System.out.println("生成的随机数(测试)："+num);
             begin.guess(num);
         }while (choice != 2);
     }

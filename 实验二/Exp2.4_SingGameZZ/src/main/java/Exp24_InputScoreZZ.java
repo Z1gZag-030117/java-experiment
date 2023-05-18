@@ -7,11 +7,9 @@ import java.util.Scanner;
  */
 public class Exp24_InputScoreZZ {
     Exp24_DelScoreZZ del;
-
     Exp24_InputScoreZZ(Exp24_DelScoreZZ del) {
         this.del = del;
     }
-
     public void inputScore() {
         int count = 0;
         boolean f = false;
@@ -21,7 +19,7 @@ public class Exp24_InputScoreZZ {
                 count = new Scanner(System.in).nextInt();
                 f = true;
             } catch (InputMismatchException e) {
-                System.out.println("请输入整数！");
+                System.out.println("请输入正整数！");
                 f = false;
             }
         }
@@ -32,5 +30,4 @@ public class Exp24_InputScoreZZ {
         }
         del.doDelete(a);
     }
-
 }

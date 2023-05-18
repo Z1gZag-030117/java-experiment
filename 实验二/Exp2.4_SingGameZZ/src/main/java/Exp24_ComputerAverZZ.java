@@ -3,7 +3,6 @@
  * @version 1.0
  */
 public class Exp24_ComputerAverZZ {
-
     public void giveAver(double [] b) {
         double sum = 0;
         for (double v : b) {
