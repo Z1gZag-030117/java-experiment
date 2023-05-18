@@ -4,17 +4,18 @@
  */
 public class Line {
 
-    InputScore one;
-    DelScore two;
-    ComputerAver three;
+    InputScore inputScore;
+    DelScore delScore;
+    ComputerAver computerAver;
 
     public Line() {
-        three = new ComputerAver();
-        two = new DelScore(three);
-        one = new InputScore(two);
+        computerAver = new ComputerAver();
+        delScore = new DelScore(computerAver);
+        inputScore = new InputScore(delScore);
     }
+
     public void givePersonScore(){
-        one.inputScore();
+        inputScore.inputScore();
     }
 
 

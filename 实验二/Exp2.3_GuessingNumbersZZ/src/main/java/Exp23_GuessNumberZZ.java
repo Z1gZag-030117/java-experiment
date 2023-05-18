@@ -83,8 +83,7 @@ public class Exp23_GuessNumberZZ {
                     return count;
                 }
             }
-        }
-        catch (InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("ÇëÊäÈëÕûÊı!");
             count = start(num, count);
             return count;
