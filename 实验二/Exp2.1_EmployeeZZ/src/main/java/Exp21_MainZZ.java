@@ -31,66 +31,66 @@ public class Exp21_MainZZ {
     }
 
     //获取工号
-    public static int get_number() {
+    public static int getNumber() {
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入工号：");
         try {
             int number = sc.nextInt();
             if (number <= 0) {
                 System.out.println("请输入正整数！");
-                return get_number();
+                return getNumber();
             }
             return number;
         } catch (InputMismatchException e) {
             System.out.println("请输入整数！");
-            return get_number();
+            return getNumber();
         }
     }
 
     //获取姓名
-    public static String get_name() {
+    public static String getName() {
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入姓名：");
         String name = sc.next();
         Pattern pattern = Pattern.compile(".*\\d+.*");
         if (pattern.matcher(name).matches()) {
             System.out.println("不能输入数字");
-            return get_name();
+            return getName();
         }
         return name;
     }
 
     //获取出生年份
-    public static int get_birthYear() {
+    public static int getBirthYear() {
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入出生年份：");
         try {
             int birthYear = sc.nextInt();
             if (birthYear < 1900 || birthYear > 2021) {
                 System.out.println("输入有误，请重新输入！");
-                return get_birthYear();
+                return getBirthYear();
             }
             return birthYear;
         } catch (InputMismatchException e) {
             System.out.println("请输入合法数字！");
-            return get_birthYear();
+            return getBirthYear();
         }
     }
 
     //获取出生月份
-    public static int get_birthMonth() {
+    public static int getBirthMonth() {
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入出生月份：");
         try {
             int birthMonth = sc.nextInt();
             if (birthMonth < 1 || birthMonth > 12) {
                 System.out.println("输入有误，请重新输入！");
-                return get_birthMonth();
+                return getBirthMonth();
             }
             return birthMonth;
         } catch (InputMismatchException e) {
             System.out.println("请输合法入数字！");
-            return get_birthMonth();
+            return getBirthMonth();
         }
     }
 
@@ -102,10 +102,10 @@ public class Exp21_MainZZ {
         Data[2] = new Exp21_CommissionEmployeeZZ();
         Data[3] = new Exp21_BasePlusCommissionEmployeeZZ();
 
-        Data[i].id = get_number();
-        Data[i].name = get_name();
-        Data[i].birthYear = get_birthYear();
-        Data[i].birthMonth = get_birthMonth();
+        Data[i].id = getNumber();
+        Data[i].name = getName();
+        Data[i].birthYear = getBirthYear();
+        Data[i].birthMonth = getBirthMonth();
         System.out.println("处理结果：");
         System.out.println("工号：" + Data[i].id);
         System.out.println("姓名：" + Data[i].name);

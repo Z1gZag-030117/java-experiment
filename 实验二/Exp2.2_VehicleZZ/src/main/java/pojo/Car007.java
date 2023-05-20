@@ -9,8 +9,7 @@ import inter.Exp22_CommonZZ;
 public class Car007 implements Exp22_CommonZZ {
     @Override
     public double speed(double a, double b, double c) {
-        if(c==0)
-        {
+        if(c==0) {
             System.out.println("³ýÊýÎª0");
             return  0;
         }

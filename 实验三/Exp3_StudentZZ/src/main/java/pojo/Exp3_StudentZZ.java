@@ -1,54 +1,46 @@
 package pojo;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 /**
  * @author 朱喆
  * @version 1.0
  */
-public class Student {
-
+public class Exp3_StudentZZ {
     private String id;
     private String name;
     private String grade;
-
-    public Student() {
+    public Exp3_StudentZZ() {
     }
-
-    public Student(String id, String name, String grade) {
+    public Exp3_StudentZZ(String id, String name, String grade) {
         this.id = id;
         this.name = name;
         this.grade = grade;
     }
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getGrade() {
         return grade;
     }
-
     public void setGrade(String grade) {
         this.grade = grade;
     }
-
-    public String getInfo(){
-        return "学号："+id+"\t年级："+grade+"\t姓名："+name;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", grade='" + grade + '\'' +
+                '}';
     }
-
 }
