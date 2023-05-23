@@ -16,4 +16,14 @@ public abstract class Employee {
     public int birthMonth;
     public static int salary;
     public abstract int salaryMethod();
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthYear=" + birthYear +
+                ", birthMonth=" + birthMonth +
+                '}';
+    }
 }
