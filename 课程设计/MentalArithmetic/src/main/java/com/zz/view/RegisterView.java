@@ -1,7 +1,12 @@
 package com.zz.view;
 
+import com.zz.pojo.User;
 import com.zz.service.UserService;
 import com.zz.service.impl.UserServiceImpl;
+import com.zz.utils.MyBeanUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +18,17 @@ import java.awt.*;
 
 public class RegisterView {
 
-    UserService userService = new UserServiceImpl();
+//    @Autowired
+//    private UserService userService;
+    //UserService userService = new UserServiceImpl();
 
     public RegisterView() {
         init();
     }
 
     public void init() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        UserService userService = (UserService) context.getBean("userService");
         JLabel usernameLabel, accountLabel, emailLabel, passwordLabel, confirmPasswordLabel, genderLabel;
         JTextField usernameField, accountField, emailField;
         JPasswordField passwordField, confirmPasswordField;
@@ -94,7 +103,7 @@ public class RegisterView {
         //为注册按钮增加监听器
         submitButton.addActionListener(e -> {
             String gander;
-            for (Component c : panel.getComponents()) {
+            for (java.awt.Component c : panel.getComponents()) {
                 if (c instanceof JRadioButton) {
                     ((JRadioButton) c).isSelected();
                 }
@@ -111,7 +120,6 @@ public class RegisterView {
                 frame.setVisible(false);
                 new LoginView();
             } else {
-
             }
         });
     }

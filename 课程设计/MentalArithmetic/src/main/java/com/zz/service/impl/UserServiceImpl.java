@@ -7,6 +7,7 @@ import com.zz.utils.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ import javax.swing.*;
  * @author 朱喆
  * @version 1.0
  */
-@Service
+@Service("userService")
 public class UserServiceImpl extends JPanel implements UserService {
     @Override
     public User login(String account, String password) {
