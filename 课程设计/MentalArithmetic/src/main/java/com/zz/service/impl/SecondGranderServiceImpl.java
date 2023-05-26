@@ -71,22 +71,15 @@ public class SecondGranderServiceImpl implements SecondGranderService {
 
     @Override
     public Subject subject5() {
-        return null;
-    }
-
-    @Override
-    public Subject subject6() {
-        int i = new Random().nextInt(6) + 1;
+        int i = new Random().nextInt(4) + 1;
         if (i == 1) {
             return this.subject1();
         } else if (i == 2) {
             return this.subject2();
         } else if (i == 3) {
             return this.subject3();
-        } else if (i == 4) {
+        } else  {
             return this.subject4();
-        } else {
-            return this.subject5();
         }
     }
 }

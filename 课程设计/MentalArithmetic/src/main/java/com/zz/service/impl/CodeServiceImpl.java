@@ -14,22 +14,17 @@ import org.springframework.stereotype.Service;
  */
 @Service("codeService")
 public class CodeServiceImpl implements CodeService {
+    SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
+    SqlSession sqlSession = factory.openSession();
+    CodeMapper mapper = sqlSession.getMapper(CodeMapper.class);
 
     @Override
     public Code saveCode(Code code) {
-        SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
-        SqlSession sqlSession = factory.openSession();
-        CodeMapper mapper = sqlSession.getMapper(CodeMapper.class);
-        Code c = mapper.add(code);
-        return c;
+        return mapper.add(code);
     }
 
     @Override
     public String selectCode(String email) {
-        SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
-        SqlSession sqlSession = factory.openSession();
-        CodeMapper mapper = sqlSession.getMapper(CodeMapper.class);
-        String code = mapper.select(email);
-        return code;
+        return mapper.select(email);
     }
 }

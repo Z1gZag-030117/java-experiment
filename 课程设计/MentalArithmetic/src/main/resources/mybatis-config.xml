@@ -5,7 +5,7 @@
 <configuration>
     <!--起别名-->
     <typeAliases>
-        <package name="com.zz.pojo"/>
+        <package name="com.zz"/>
     </typeAliases>
 
 
@@ -23,7 +23,7 @@
 
     <mappers>
         <!--扫描mapper-->
-        <package name="com.zz.mapper"/>
+        <package name="com.zz"/>
     </mappers>
 
 </configuration>

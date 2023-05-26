@@ -1,18 +1,13 @@
 package com.zz.view;
 
-import com.zz.pojo.User;
 import com.zz.service.UserService;
-import com.zz.service.impl.UserServiceImpl;
-import com.zz.utils.MyBeanUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author æœ±å–†
+ * @author Öì†´
  * @version 1.0
  */
 
@@ -36,17 +31,17 @@ public class RegisterView {
         ButtonGroup genderGroup;
         JButton submitButton, returnButton;
         JFrame frame = new JFrame();
-        // è®¾ç½®çª—å£çš„æ ‡é¢˜å’Œå¤§å°
-        frame.setTitle("æ³¨å†Œ");
+        // ÉèÖÃ´°¿ÚµÄ±êÌâºÍ´óĞ¡
+        frame.setTitle("×¢²á");
         frame.setSize(400, 300);
 
-        // åˆ›å»ºç»„ä»¶
-        usernameLabel = new JLabel("ç”¨æˆ·å");
-        accountLabel = new JLabel("è´¦å·");
-        emailLabel = new JLabel("é‚®ç®±");
-        passwordLabel = new JLabel("å¯†ç ");
-        confirmPasswordLabel = new JLabel("ç¡®è®¤å¯†ç ");
-        genderLabel = new JLabel("æ€§åˆ«");
+        // ´´½¨×é¼ş
+        usernameLabel = new JLabel("ÓÃ»§Ãû");
+        accountLabel = new JLabel("ÕËºÅ");
+        emailLabel = new JLabel("ÓÊÏä");
+        passwordLabel = new JLabel("ÃÜÂë");
+        confirmPasswordLabel = new JLabel("È·ÈÏÃÜÂë");
+        genderLabel = new JLabel("ĞÔ±ğ");
 
         usernameField = new JTextField();
         accountField = new JTextField();
@@ -54,17 +49,17 @@ public class RegisterView {
         passwordField = new JPasswordField();
         confirmPasswordField = new JPasswordField();
 
-        jb1 = new JRadioButton("ä¸€å¹´çº§");
-        jb2 = new JRadioButton("äºŒå¹´çº§");
+        jb1 = new JRadioButton("Ò»Äê¼¶");
+        jb2 = new JRadioButton("¶şÄê¼¶");
         jb1.setSelected(true);
         genderGroup = new ButtonGroup();
         genderGroup.add(jb1);
         genderGroup.add(jb2);
 
-        submitButton = new JButton("æ³¨å†Œ");
-        returnButton = new JButton("è¿”å›");
+        submitButton = new JButton("×¢²á");
+        returnButton = new JButton("·µ»Ø");
 
-        // åˆ›å»ºå¸ƒå±€
+        // ´´½¨²¼¾Ö
         JPanel panel = new JPanel(new GridLayout(7, 2));
         panel.add(usernameLabel);
         panel.add(usernameField);
@@ -81,7 +76,7 @@ public class RegisterView {
         panel.add(new JLabel());
         panel.add(jb2);
 
-        // æ·»åŠ ç»„ä»¶
+        // Ìí¼Ó×é¼ş
         frame.add(panel, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
@@ -90,17 +85,17 @@ public class RegisterView {
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.setBounds(400, 100, 800, 640);
-        // è®¾ç½®çª—å£å¯è§
+        // ÉèÖÃ´°¿Ú¿É¼û
         frame.setVisible(true);
 
 
-        //è¿”å›æŒ‰é’®
+        //·µ»Ø°´Å¥
         returnButton.addActionListener(e -> {
             frame.setVisible(false);
-            LoginView loginView = new LoginView();
+            new LoginView();
         });
 
-        //ä¸ºæ³¨å†ŒæŒ‰é’®å¢åŠ ç›‘å¬å™¨
+        //Îª×¢²á°´Å¥Ôö¼Ó¼àÌıÆ÷
         submitButton.addActionListener(e -> {
             String gander;
             for (java.awt.Component c : panel.getComponents()) {
@@ -108,7 +103,7 @@ public class RegisterView {
                     ((JRadioButton) c).isSelected();
                 }
             }
-            gander = jb1.isSelected() ? "ä¸€å¹´çº§" : "äºŒå¹´çº§";
+            gander = jb1.isSelected() ? "Ò»Äê¼¶" : "¶şÄê¼¶";
             String account = accountField.getText();
             String name = usernameField.getText();
             String psd = String.valueOf(passwordField.getPassword());
@@ -116,7 +111,7 @@ public class RegisterView {
             String mailBoxNum = emailField.getText();
             boolean flag = userService.register(account, name, psd, cpsd, mailBoxNum, gander);
             if (flag) {
-                JOptionPane.showMessageDialog(null, "æ³¨å†ŒæˆåŠŸï¼", "æ³¨å†ŒæˆåŠŸï¼", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "×¢²á³É¹¦£¡", "×¢²á³É¹¦£¡", JOptionPane.WARNING_MESSAGE);
                 frame.setVisible(false);
                 new LoginView();
             } else {

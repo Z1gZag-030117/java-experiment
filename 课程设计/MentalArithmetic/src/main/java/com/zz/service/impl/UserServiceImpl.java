@@ -13,16 +13,20 @@ import org.springframework.stereotype.Service;
 import javax.swing.*;
 
 /**
- * @author æœ±å–†
+ * @author Öì†´
  * @version 1.0
  */
 @Service("userService")
 public class UserServiceImpl extends JPanel implements UserService {
+
+    //1.»ñÈ¡sqlSession
+    SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
+    SqlSession sqlSession = factory.openSession();
+    //2.»ñÈ¡UserMapper
+    UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
     @Override
     public User login(String account, String password) {
-        SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
-        SqlSession sqlSession = factory.openSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.select(account, password);
         sqlSession.close();
         return user;
@@ -30,11 +34,6 @@ public class UserServiceImpl extends JPanel implements UserService {
 
     @Override
     public boolean register(String account, String name, String psd, String cpsd, String mailBoxNum,String grander) {
-        //1.è·å–sqlSession
-        SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
-        SqlSession sqlSession = factory.openSession();
-        //2.è·å–UserMapper
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = new User();
         user.setAccount(account);
         user.setName(name);
@@ -42,20 +41,20 @@ public class UserServiceImpl extends JPanel implements UserService {
         user.setMailbox(mailBoxNum);
         user.setGander(grander);
         if (account.equals("")||name.equals("")||psd.equals("")||mailBoxNum.equals("")){
-            JOptionPane.showMessageDialog(null, "è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼", "è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ÊäÈë²»ÄÜÎª¿Õ£¡", "ÊäÈë²»ÄÜÎª¿Õ£¡", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (!psd.equals(cpsd)){
-            JOptionPane.showMessageDialog(null,"ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸åŒï¼","ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸åŒï¼",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Á½´ÎÊäÈëÃÜÂë²»Í¬£¡","Á½´ÎÊäÈëÃÜÂë²»Í¬£¡",JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        //åˆ¤æ–­è¿™ä¸ªè¦æ³¨å†Œçš„ç”¨æˆ·åæ˜¯å¦å­˜åœ¨
+        //ÅĞ¶ÏÕâ¸öÒª×¢²áµÄÓÃ»§ÃûÊÇ·ñ´æÔÚ
         User u = mapper.selectByUserAccount(user.getAccount());
-        if (u == null) { // uä¸ºç©ºè¡¨ç¤ºæ­¤ç”¨æˆ·ä¸å­˜åœ¨ï¼Œå¯ä»¥æ³¨å†Œ
+        if (u == null) { // uÎª¿Õ±íÊ¾´ËÓÃ»§²»´æÔÚ£¬¿ÉÒÔ×¢²á
             mapper.add(user);
             sqlSession.commit();
         }else {
-            JOptionPane.showMessageDialog(null,"ç”¨æˆ·å·²ç»å­˜åœ¨ï¼","ç”¨æˆ·å·²ç»å­˜åœ¨ï¼",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"ÓÃ»§ÒÑ¾­´æÔÚ£¡","ÓÃ»§ÒÑ¾­´æÔÚ£¡",JOptionPane.WARNING_MESSAGE);
             return false;
         }
         sqlSession.close();

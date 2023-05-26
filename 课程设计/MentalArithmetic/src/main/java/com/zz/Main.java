@@ -4,7 +4,7 @@ import com.zz.view.LoginView;
 
 
 /**
- * @author 朱喆
+ * @author �솴
  * @version 1.0
  */
 public class Main {

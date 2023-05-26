@@ -4,13 +4,12 @@ import com.zz.pojo.Code;
 import com.zz.service.CodeService;
 import com.zz.utils.SendMailUtils;
 import com.zz.utils.ValidateCodeUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
+
 public class ForgotPasswordView extends JFrame {
     private JLabel titleLabel, emailLabel, codeLabel;
     private JTextField emailField, codeTextFile;
@@ -23,29 +22,29 @@ public class ForgotPasswordView extends JFrame {
         System.out.println(codeService);
         String code = ValidateCodeUtils.generateValidateCode(4).toString();
         String from = "1286549860@qq.com";
-        String text = "ã€å£ç®—è½¯ä»¶ã€‘éªŒè¯ç  " + code + " ç”¨äºå£ç®—è½¯ä»¶èº«ä»½éªŒè¯ï¼Œè¯·å‹¿æ³„éœ²å’Œè½¬å‘ã€‚å¦‚éæœ¬äººæ“ä½œï¼Œè¯·å¿½ç•¥æ­¤çŸ­ä¿¡ã€‚";
-        String subject = "ã€å£ç®—è½¯ä»¶ã€‘";
+        String text = "¡¾¿ÚËãÈí¼ş¡¿ÑéÖ¤Âë " + code + " ÓÃÓÚ¿ÚËãÈí¼şÉí·İÑéÖ¤£¬ÇëÎğĞ¹Â¶ºÍ×ª·¢¡£Èç·Ç±¾ÈË²Ù×÷£¬ÇëºöÂÔ´Ë¶ÌĞÅ¡£";
+        String subject = "¡¾¿ÚËãÈí¼ş¡¿";
 
-        // è®¾ç½®çª—å£æ ‡é¢˜å’Œå¤§å°
-        setTitle("æ‰¾å›å¯†ç ");
+        // ÉèÖÃ´°¿Ú±êÌâºÍ´óĞ¡
+        setTitle("ÕÒ»ØÃÜÂë");
         setSize(400, 200);
 
-        // åˆ›å»ºå¹¶è®¾ç½®æ ‡é¢˜æ ‡ç­¾
-        titleLabel = new JLabel("è¯·è¾“å…¥æ‚¨çš„æ³¨å†Œé‚®ç®±");
-        titleLabel.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
+        // ´´½¨²¢ÉèÖÃ±êÌâ±êÇ©
+        titleLabel = new JLabel("ÇëÊäÈëÄúµÄ×¢²áÓÊÏä");
+        titleLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
 
-        // åˆ›å»ºå¹¶è®¾ç½®é‚®ç®±æ ‡ç­¾å’Œæ–‡æœ¬æ¡†
-        emailLabel = new JLabel("é‚®ç®±ï¼š");
+        // ´´½¨²¢ÉèÖÃÓÊÏä±êÇ©ºÍÎÄ±¾¿ò
+        emailLabel = new JLabel("ÓÊÏä£º");
         emailField = new JTextField(20);
-        codeLabel = new JLabel("éªŒè¯ç ï¼š");
+        codeLabel = new JLabel("ÑéÖ¤Âë£º");
         codeTextFile = new JTextField(20);
 
-        // åˆ›å»ºå¹¶è®¾ç½®æäº¤å’Œå–æ¶ˆæŒ‰é’®
-        submitButton = new JButton("æäº¤");
-        codeButton = new JButton("ç¡®è®¤éªŒè¯ç ");
-        cancelButton = new JButton("å–æ¶ˆ");
+        // ´´½¨²¢ÉèÖÃÌá½»ºÍÈ¡Ïû°´Å¥
+        submitButton = new JButton("Ìá½»");
+        codeButton = new JButton("È·ÈÏÑéÖ¤Âë");
+        cancelButton = new JButton("È¡Ïû");
 
-        // è®¾ç½®å¸ƒå±€ç®¡ç†å™¨ä¸ºç½‘æ ¼å¸ƒå±€ï¼Œå¹¶å°†ç»„ä»¶æ·»åŠ åˆ°é¢æ¿ä¸­
+        // ÉèÖÃ²¼¾Ö¹ÜÀíÆ÷ÎªÍø¸ñ²¼¾Ö£¬²¢½«×é¼şÌí¼Óµ½Ãæ°åÖĞ
         JPanel panel = new JPanel(new GridLayout(5, 4, 10, 10));
         panel.add(titleLabel);
         panel.add(new JLabel(""));
@@ -58,14 +57,14 @@ public class ForgotPasswordView extends JFrame {
         panel.add(cancelButton);
 
 
-        // å°†é¢æ¿æ·»åŠ åˆ°çª—å£ä¸­ï¼Œå¹¶è®¾ç½®çª—å£å…³é—­æ—¶çš„æ“ä½œ
+        // ½«Ãæ°åÌí¼Óµ½´°¿ÚÖĞ£¬²¢ÉèÖÃ´°¿Ú¹Ø±ÕÊ±µÄ²Ù×÷
         add(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // è®¾ç½®æäº¤æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶ï¼Œå®ç°é‚®ä»¶å‘é€åŠŸèƒ½
+        // ÉèÖÃÌá½»°´Å¥µÄµã»÷ÊÂ¼ş£¬ÊµÏÖÓÊ¼ş·¢ËÍ¹¦ÄÜ
         submitButton.addActionListener(e -> {
             String email = emailField.getText();
-            // TODO: å®ç°é‚®ä»¶å‘é€åŠŸèƒ½ï¼Œå°†éªŒè¯ç å‘é€åˆ°è¯¥é‚®ç®±
+            // TODO: ÊµÏÖÓÊ¼ş·¢ËÍ¹¦ÄÜ£¬½«ÑéÖ¤Âë·¢ËÍµ½¸ÃÓÊÏä
             try {
                 SendMailUtils.sendMail(from, email, text, subject);
             } catch (MessagingException messagingException) {
@@ -74,29 +73,29 @@ public class ForgotPasswordView extends JFrame {
             Code c = new Code();
             c.setCodeNum(code);
             c.setEmail(email);
-            //å°†éªŒè¯ç å’Œé‚®ç®±å­˜å…¥æ•°æ®åº“
+            //½«ÑéÖ¤ÂëºÍÓÊÏä´æÈëÊı¾İ¿â
             codeService.saveCode(c);
-            JOptionPane.showMessageDialog(this, "éªŒè¯ç å·²å‘é€åˆ°æ‚¨çš„é‚®ç®±ï¼Œè¯·æŸ¥æ”¶å¹¶è¾“å…¥éªŒè¯ç ");
+            JOptionPane.showMessageDialog(this, "ÑéÖ¤ÂëÒÑ·¢ËÍµ½ÄúµÄÓÊÏä£¬Çë²éÊÕ²¢ÊäÈëÑéÖ¤Âë");
         });
 
         codeButton.addActionListener(e -> {
             String emile = emailField.getText();
-            //æ ¹æ®é‚®ç®±ä»æ•°æ®åº“ä¸­æŸ¥æ‰¾éªŒè¯ç 
+            //¸ù¾İÓÊÏä´ÓÊı¾İ¿âÖĞ²éÕÒÑéÖ¤Âë
             String code1 = codeService.selectCode(emile);
             if (code1==null||code1.equals(code)){
-                JOptionPane.showMessageDialog(this, "éªŒè¯ç é”™è¯¯ï¼");
+                JOptionPane.showMessageDialog(this, "ÑéÖ¤Âë´íÎó£¡");
             }else {
-                JOptionPane.showMessageDialog(this, "æ‰¾å›å¯†ç æˆåŠŸï¼");
+                JOptionPane.showMessageDialog(this, "ÕÒ»ØÃÜÂë³É¹¦£¡");
             }
         });
 
-        // è®¾ç½®å–æ¶ˆæŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶ï¼Œå…³é—­çª—å£
+        // ÉèÖÃÈ¡Ïû°´Å¥µÄµã»÷ÊÂ¼ş£¬¹Ø±Õ´°¿Ú
         cancelButton.addActionListener(e -> {
             dispose();
             new LoginView();
         });
 
-        // è®¾ç½®çª—å£å±…ä¸­æ˜¾ç¤º
+        // ÉèÖÃ´°¿Ú¾ÓÖĞÏÔÊ¾
         setLocationRelativeTo(null);
         //setVisible(true);
     }

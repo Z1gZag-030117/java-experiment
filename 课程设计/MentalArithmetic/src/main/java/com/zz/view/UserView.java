@@ -1,93 +1,256 @@
 package com.zz.view;
 
+import com.zz.pojo.Subject;
+import com.zz.pojo.User;
 import com.zz.service.FirstGranderService;
+import com.zz.service.SecondGranderService;
+import com.zz.service.SubjectService;
+import com.zz.utils.SqlSessionFactoryUtils;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * @author æœ±å–†
+ * @author Öì†´
  * @version 1.0
  */
+
 public class UserView {
 
 
-    public UserView(String grader) {
-        init(grader);
+    public UserView(User user) {
+        init(user);
     }
 
-    public void init(String grander) {
-        System.out.println("è¾“å…¥æƒ³è¦è®­ç»ƒçš„é¢˜æ•°ï¼š");
-        int num = new Scanner(System.in).nextInt();
-        if (grander.equals("ä¸€å¹´çº§")) {
-            trainFirstGrade(num);
+    public void init(User user) {
+        System.out.println("1.¿ªÊ¼¿ÚËãÑµÁ·      2.²é¿´´íÌâ");
+        System.out.print("ÊäÈëÄãµÄÑ¡Ôñ£º");
+        int choice = new Scanner(System.in).nextInt();
+        if (choice == 1) {
+            System.out.print("ÊäÈëÏëÒªÑµÁ·µÄÌâÊı£º");
+            int num = new Scanner(System.in).nextInt(); // ÌâÄ¿ÊıÁ¿
+            if (user.getGander().equals("Ò»Äê¼¶")) {
+                trainFirstGrade(num, user);
+            } else {
+                trainSecondGrade(num, user);
+            }
         } else {
-            trainSecondGrade(num);
+            new MisSubjectView(user);
         }
+
     }
 
-    private static void trainFirstGrade(int num) {
+    private static void trainFirstGrade(int num, User user) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         FirstGranderService first = (FirstGranderService) context.getBean("first");
-        System.out.println("è¯·é€‰æ‹©è®­ç»ƒç±»å‹ï¼š");
-        System.out.println("1. 10ä»¥å†…åŠ å‡æ³•ï¼š1æ­¥è®¡ç®—");
-        System.out.println("2. 10ä»¥å†…åŠ å‡æ³•ï¼š2æ­¥è®¡ç®—");
-        System.out.println("3. 10-20çš„åŠ å‡æ³•ï¼š1æ­¥è®¡ç®—");
-        System.out.println("4. 10-20çš„åŠ å‡æ³•ï¼š2æ­¥è®¡ç®—");
-        System.out.println("5. ç»¼åˆè®­ç»ƒï¼ˆåŒ…æ‹¬ä»¥ä¸Šæ‰€æœ‰ç±»å‹ï¼‰");
+        SubjectService subjectService = (SubjectService) context.getBean("subject");
+        System.out.println("1. 10ÒÔÄÚ¼Ó¼õ·¨£º1²½¼ÆËã");
+        System.out.println("2. 10ÒÔÄÚ¼Ó¼õ·¨£º2²½¼ÆËã");
+        System.out.println("3. 10-20µÄ¼Ó¼õ·¨£º1²½¼ÆËãºÍ2²½¼ÆËã");
+        System.out.println("4. ×ÛºÏÑµÁ·£¨°üÀ¨ÒÔÉÏËùÓĞÀàĞÍ£©");
+        System.out.print("ÇëÑ¡ÔñÑµÁ·ÀàĞÍ:");
         Scanner scanner = new Scanner(System.in);
         int type = scanner.nextInt();
+        int misNum = 0;
+        Subject[] subject = new Subject[num]; //²úÉúnumµÀÌâÄ¿
         switch (type) {
             case 1: {
-
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = first.subject1();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject1(num, misNum, subject);
             }
             case 2: {
-
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = first.subject2();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject1(num, misNum, subject);
             }
             case 3: {
-
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = first.subject3();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject1(num, misNum, subject);
             }
             case 4: {
-
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = first.subject4();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject1(num, misNum, subject);
             }
-            case 5: {
+        }
+        new UserView(user);
+    }
 
+    private static void misSubject1(int num, int misNum, Subject[] subject) {
+        System.out.println("---------------");
+        System.out.println("Ò»¹²´íÁË" + misNum + "Ìâ,·Ö±ğÊÇ£º");
+        for (int i = 0; i < num; i++) {
+            if (subject[i].num != 0) {
+                System.out.println(subject[i].showMis() + "=" + subject[i].misAnswer + " -->(" + subject[i].getAnswer() + ")");
             }
-
         }
     }
 
-    private static void trainSecondGrade(int num) {
+
+    private static void trainSecondGrade(int num, User user) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-        FirstGranderService second = (FirstGranderService) context.getBean("second");
-        System.out.println("è¯·é€‰æ‹©è®­ç»ƒç±»å‹ï¼š");
-        System.out.println("1. 100ä»¥å†…ä¸è¿›ä½åŠ æ³•");
-        System.out.println("2. 100ä»¥å†…ä¸é€€ä½å‡æ³•");
-        System.out.println("3. 100ä»¥å†…è¿›ä½åŠ æ³•");
-        System.out.println("4. 100ä»¥å†…é€€ä½å‡æ³•");
-        System.out.println("5. 100 ä»¥å†…è¿åŠ è¿å‡");
-        System.out.println("6. ç»¼åˆè®­ç»ƒï¼ˆåŒ…æ‹¬ä»¥ä¸Šæ‰€æœ‰ç±»å‹ï¼‰");
+        SecondGranderService second = (SecondGranderService) context.getBean("second");
+        SubjectService subjectService = (SubjectService) context.getBean("subject");
+        System.out.println("ÇëÑ¡ÔñÑµÁ·ÀàĞÍ£º");
+        System.out.println("1. 100ÒÔÄÚ²»½øÎ»¼Ó·¨");
+        System.out.println("2. 100ÒÔÄÚ²»ÍËÎ»¼õ·¨");
+        System.out.println("3. 100ÒÔÄÚ½øÎ»¼Ó·¨");
+        System.out.println("4. 100ÒÔÄÚÍËÎ»¼õ·¨");
+        System.out.println("5. ×ÛºÏÑµÁ·£¨°üÀ¨ÒÔÉÏËùÓĞÀàĞÍ£©");
         Scanner scanner = new Scanner(System.in);
         int type = scanner.nextInt();
+        Subject[] subject = new Subject[num]; //²úÉúnumµÀÌâÄ¿
+        int misNum = 0;
         switch (type) {
             case 1: {
-
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = second.subject1();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject2(num, misNum, subject);
+                new UserView(user);
             }
             case 2: {
 
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = second.subject2();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject2(num, misNum, subject);
+                new UserView(user);
             }
             case 3: {
 
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = second.subject3();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject2(num, misNum, subject);
+                new UserView(user);
             }
             case 4: {
 
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = second.subject4();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject2(num, misNum, subject);
+                new UserView(user);
             }
             case 5: {
-
+                for (int i = 0; i < num; i++) {
+                    System.out.print(i + 1 + ". ");
+                    subject[i] = second.subject5();
+                    System.out.print(subject[i].show());
+                    int answer = scanner.nextInt(); //½ÓÊÕ´ğ°¸
+                    if (answer != subject[i].getAnswer()) {  //´íÎó
+                        misNum++;
+                        subject[i].num++;
+                        subject[i].misAnswer = answer;
+                        subject[i].setUserAccount(user.getAccount());
+                        subjectService.save(subject[i], user);
+                    }
+                }
+                misSubject2(num, misNum, subject);
+                new UserView(user);
             }
+        }
+        new UserView(user);
+    }
 
+    private static void misSubject2(int num, int misNum, Subject[] subject) {
+        System.out.println("---------------");
+        System.out.println("Ò»¹²´íÁË" + misNum + "Ìâ,·Ö±ğÊÇ£º");
+        for (int i = 0; i < num; i++) {
+            if (subject[i].num != 0) {
+                System.out.println(subject[i].showMis() + "=" + subject[i].misAnswer + " -->(" + subject[i].getAnswer() + ")");
+            }
         }
     }
 
 }
+
+

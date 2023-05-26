@@ -12,5 +12,4 @@ public interface SecondGranderService {
     Subject subject3();
     Subject subject4();
     Subject subject5();
-    Subject subject6();
 }

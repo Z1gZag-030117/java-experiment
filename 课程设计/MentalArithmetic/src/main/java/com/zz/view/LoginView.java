@@ -3,15 +3,13 @@ package com.zz.view;
 
 import com.zz.pojo.User;
 import com.zz.service.UserService;
-import com.zz.service.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author æœ±å–†
+ * @author Öì†´
  * @version 1.0
  */
 public class LoginView {
@@ -23,20 +21,20 @@ public class LoginView {
     public void init() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         UserService userService = (UserService) context.getBean("userService");
-        JFrame frame = new JFrame("å°å­¦æ•°å­¦å£ç®—è½¯ä»¶");
+        JFrame frame = new JFrame("Ð¡Ñ§ÊýÑ§¿ÚËãÈí¼þ");
         frame.setLayout(null);
 
-        JLabel Label = new JLabel("æ¬¢è¿Žæ¥åˆ°å°å­¦æ•°å­¦å£ç®—è½¯ä»¶ï¼");
-        Label.setFont(new Font("åŽæ–‡è¡Œæ¥·", Font.PLAIN, 40));
+        JLabel Label = new JLabel("»¶Ó­À´µ½Ð¡Ñ§ÊýÑ§¿ÚËãÈí¼þ£¡");
+        Label.setFont(new Font("»ªÎÄÐÐ¿¬", Font.PLAIN, 40));
         Label.setBounds(180, 70, 1500, 50);
         frame.add(Label);
 
-        JLabel account = new JLabel("è´¦å·:");
+        JLabel account = new JLabel("ÕËºÅ:");
         account.setBounds(250, 200, 100, 25);
         frame.add(account);
 
 
-        JLabel passwordStr = new JLabel("å¯†ç :");
+        JLabel passwordStr = new JLabel("ÃÜÂë:");
         passwordStr.setBounds(250, 250, 100, 25);
         frame.add(passwordStr);
 
@@ -49,15 +47,15 @@ public class LoginView {
         passwordText.setBounds(300, 250, 150, 25);
         frame.add(passwordText);
 
-        JButton buttonlogin = new JButton("ç™»å½•");
+        JButton buttonlogin = new JButton("µÇÂ¼");
         buttonlogin.setBounds(275, 300, 70, 25);
         frame.add(buttonlogin);
 
-        JButton buttonRegisterUser = new JButton("æ³¨å†Œç”¨æˆ·");
+        JButton buttonRegisterUser = new JButton("×¢²áÓÃ»§");
         buttonRegisterUser.setBounds(375, 300, 90, 25);
         frame.add(buttonRegisterUser);
 
-        JButton retrievePassword = new JButton("æ‰¾å›žå¯†ç ");
+        JButton retrievePassword = new JButton("ÕÒ»ØÃÜÂë");
         retrievePassword.setBounds(500, 300, 90, 25);
         frame.add(retrievePassword);
 
@@ -70,24 +68,24 @@ public class LoginView {
             String accountNumber = accountNumberText.getText();
             String password = String.valueOf(passwordText.getPassword());
             User user = userService.login(accountNumber, password);
-            if (user != null) {  //ç”¨æˆ·å­˜åœ¨ï¼Œç™»å½•æˆåŠŸï¼Œè·³è½¬é¡µé¢
-                //å¼¹å‡ºç™»å½•æˆåŠŸçš„çª—å£
-                JOptionPane.showMessageDialog(null, "ç™»é™†æˆåŠŸ", "ç™»é™†æˆåŠŸ", JOptionPane.NO_OPTION);
-                //ç‚¹å‡»ç¡®å®šåŽä¼šè·³è½¬åˆ°ä¸»çª—å£
+            if (user != null) {  //ÓÃ»§´æÔÚ£¬µÇÂ¼³É¹¦£¬Ìø×ªÒ³Ãæ
+                //µ¯³öµÇÂ¼³É¹¦µÄ´°¿Ú
+                JOptionPane.showMessageDialog(null, "µÇÂ½³É¹¦", "µÇÂ½³É¹¦", JOptionPane.NO_OPTION);
+                //µã»÷È·¶¨ºó»áÌø×ªµ½Ö÷´°¿Ú
                 frame.setVisible(false);
-                UserView userView = new UserView(user.getGander()); //è¿›å…¥ç”¨æˆ·ç•Œé¢
-            } else {  //ç™»å½•å¤±è´¥ï¼Œè´¦å·æˆ–è€…å¯†ç é”™è¯¯ï¼Œå¼¹å‡ºæç¤º
-                JOptionPane.showMessageDialog(null, "è´¦å·æˆ–å¯†ç é”™è¯¯", "è´¦å·æˆ–å¯†ç é”™è¯¯", JOptionPane.WARNING_MESSAGE);
-                //æ¸…é™¤å¯†ç æ¡†ä¸­çš„ä¿¡æ¯
+                new UserView(user); //½øÈëÓÃ»§½çÃæ
+            } else {  //µÇÂ¼Ê§°Ü£¬ÕËºÅ»òÕßÃÜÂë´íÎó£¬µ¯³öÌáÊ¾
+                JOptionPane.showMessageDialog(null, "ÕËºÅ»òÃÜÂë´íÎó", "ÕËºÅ»òÃÜÂë´íÎó", JOptionPane.WARNING_MESSAGE);
+                //Çå³ýÃÜÂë¿òÖÐµÄÐÅÏ¢
                 passwordText.setText("");
-                //æ¸…é™¤è´¦å·æ¡†ä¸­çš„ä¿¡æ¯
+                //Çå³ýÕËºÅ¿òÖÐµÄÐÅÏ¢
                 accountNumberText.setText("");
             }
         });
 
         buttonRegisterUser.addActionListener(e -> {
-            frame.setVisible(false);//å…³é—­ç™»å½•é¡µé¢
-            new RegisterView();//è¿›å…¥æ³¨å†Œé¡µé¢
+            frame.setVisible(false);//¹Ø±ÕµÇÂ¼Ò³Ãæ
+            new RegisterView();//½øÈë×¢²áÒ³Ãæ
         });
 
         retrievePassword.addActionListener(e -> {

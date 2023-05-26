@@ -35,4 +35,5 @@ public interface UserMapper {
      */
     @Insert("insert into user values(#{account},#{name},#{password},#{gander},#{mailbox})")
     void add(User user);
+
 }
