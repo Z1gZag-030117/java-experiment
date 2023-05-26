@@ -5,7 +5,6 @@ import com.zz.service.CodeService;
 import com.zz.utils.SendMailUtils;
 import com.zz.utils.ValidateCodeUtils;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +13,6 @@ public class ForgotPasswordView extends JFrame {
     private JLabel titleLabel, emailLabel, codeLabel;
     private JTextField emailField, codeTextFile;
     private JButton submitButton, cancelButton, codeButton;
-
 
     public ForgotPasswordView() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");

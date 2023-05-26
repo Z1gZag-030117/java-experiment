@@ -4,18 +4,4 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zz.mapper.SubjectMapper">
 
-<!--    <insert id="add" >-->
-<!--        insert into subject(id,userAccount,num1,operator1,num2,operator2,num3,answer,num)-->
-<!--        values(0,#{userAccount},#{num1},#{operator1},#{num2},#{operator2},#{num3},#{answer},#{num})-->
-<!--    </insert>-->
-
-
-<!--    <insert id="addNum">-->
-<!--        update subject set num=num+1 where id =#{id}-->
-<!--    </insert>-->
-
-<!--    <delete id="delete">-->
-<!--        delete from subject where id=#{id}-->
-<!--    </delete>-->
-
 </mapper>

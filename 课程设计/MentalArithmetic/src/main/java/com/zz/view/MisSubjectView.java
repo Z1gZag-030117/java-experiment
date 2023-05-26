@@ -4,7 +4,6 @@ import com.zz.pojo.Subject;
 import com.zz.pojo.User;
 import com.zz.service.SubjectService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.util.List;
 import java.util.Scanner;
 

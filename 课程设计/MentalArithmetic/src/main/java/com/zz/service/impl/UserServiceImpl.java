@@ -19,10 +19,8 @@ import javax.swing.*;
 @Service("userService")
 public class UserServiceImpl extends JPanel implements UserService {
 
-    //1.获取sqlSession
     SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
     SqlSession sqlSession = factory.openSession();
-    //2.获取UserMapper
     UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
     @Override
@@ -60,6 +58,5 @@ public class UserServiceImpl extends JPanel implements UserService {
         sqlSession.close();
         return true;
     }
-
 
 }

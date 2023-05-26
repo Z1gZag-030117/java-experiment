@@ -2,8 +2,6 @@ package com.zz.service;
 
 
 import com.zz.pojo.User;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.stereotype.Service;
 
 /**
  * @author 朱喆

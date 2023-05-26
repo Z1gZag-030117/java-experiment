@@ -25,9 +25,6 @@ public interface SubjectMapper {
     @Update("update subject set num=num+1 where id =#{id}")
     void addNum(int id);
 
-    @Update("update subject set num=num-1 where id =#{id}")
-    void reduceNum(int id);
-
     @Select("select * from subject where " +
             "userAccount=#{userAccount} and num1=#{num1} and operator1=#{operator1} " +
             "and num2=#{num2} and operator2=#{operator2} and num3=#{num3} and answer=#{answer}")

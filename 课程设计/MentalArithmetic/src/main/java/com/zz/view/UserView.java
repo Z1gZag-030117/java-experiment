@@ -5,8 +5,6 @@ import com.zz.pojo.User;
 import com.zz.service.FirstGranderService;
 import com.zz.service.SecondGranderService;
 import com.zz.service.SubjectService;
-import com.zz.utils.SqlSessionFactoryUtils;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;

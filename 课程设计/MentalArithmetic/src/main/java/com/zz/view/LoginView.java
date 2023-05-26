@@ -1,10 +1,8 @@
 package com.zz.view;
 
-
 import com.zz.pojo.User;
 import com.zz.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -94,6 +92,5 @@ public class LoginView {
             forgotPasswordView.setVisible(true);
         });
     }
-
 
 }

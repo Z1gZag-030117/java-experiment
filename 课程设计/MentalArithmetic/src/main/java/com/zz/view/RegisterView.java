@@ -2,7 +2,6 @@ package com.zz.view;
 
 import com.zz.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,15 +11,9 @@ import java.awt.*;
  */
 
 public class RegisterView {
-
-//    @Autowired
-//    private UserService userService;
-    //UserService userService = new UserServiceImpl();
-
     public RegisterView() {
         init();
     }
-
     public void init() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         UserService userService = (UserService) context.getBean("userService");
@@ -118,5 +111,4 @@ public class RegisterView {
             }
         });
     }
-
 }

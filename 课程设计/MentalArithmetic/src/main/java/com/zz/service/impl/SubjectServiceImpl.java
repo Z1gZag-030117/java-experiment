@@ -19,11 +19,9 @@ import java.util.List;
 @Service("subject")
 public class SubjectServiceImpl implements SubjectService {
 
-
     SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
     SqlSession sqlSession = factory.openSession();
     SubjectMapper mapper = sqlSession.getMapper(SubjectMapper.class);
-
 
     @Override
     public void save(Subject subject, User user) {
@@ -49,15 +47,8 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public void reduceNum(Subject subject, User user) {
-        mapper.reduceNum(subject.getId());
-    }
-
-    @Override
     public List<Subject> selectMisByAccount(User user) {
         List<Subject> subjects = mapper.selectByAccount(user);
         return subjects;
     }
-
-
 }
