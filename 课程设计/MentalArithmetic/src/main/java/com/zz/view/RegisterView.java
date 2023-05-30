@@ -34,7 +34,7 @@ public class RegisterView {
         emailLabel = new JLabel("邮箱");
         passwordLabel = new JLabel("密码");
         confirmPasswordLabel = new JLabel("确认密码");
-        genderLabel = new JLabel("性别");
+        genderLabel = new JLabel("年级");
 
         usernameField = new JTextField();
         accountField = new JTextField();

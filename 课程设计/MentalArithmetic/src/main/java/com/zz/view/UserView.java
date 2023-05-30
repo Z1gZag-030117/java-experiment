@@ -15,12 +15,10 @@ import java.util.Scanner;
  */
 
 public class UserView {
-
-
+    private static String line = "----------------------";
     public UserView(User user) {
         init(user);
     }
-
     public void init(User user) {
         System.out.println("1.开始口算训练      2.查看错题");
         System.out.print("输入你的选择：");
@@ -38,7 +36,6 @@ public class UserView {
         }
 
     }
-
     private static void trainFirstGrade(int num, User user) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         FirstGranderService first = (FirstGranderService) context.getBean("first");
@@ -67,7 +64,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject1(num, misNum, subject);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 2: {
                 for (int i = 0; i < num; i++) {
@@ -83,7 +81,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject1(num, misNum, subject);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 3: {
                 for (int i = 0; i < num; i++) {
@@ -99,7 +98,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject1(num, misNum, subject);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 4: {
                 for (int i = 0; i < num; i++) {
@@ -115,23 +115,12 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject1(num, misNum, subject);
+                misSubject(num, misNum, subject);
+                break;
             }
         }
         new UserView(user);
     }
-
-    private static void misSubject1(int num, int misNum, Subject[] subject) {
-        System.out.println("---------------");
-        System.out.println("一共错了" + misNum + "题,分别是：");
-        for (int i = 0; i < num; i++) {
-            if (subject[i].num != 0) {
-                System.out.println(subject[i].showMis() + "=" + subject[i].misAnswer + " -->(" + subject[i].getAnswer() + ")");
-            }
-        }
-    }
-
-
     private static void trainSecondGrade(int num, User user) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         SecondGranderService second = (SecondGranderService) context.getBean("second");
@@ -161,8 +150,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject2(num, misNum, subject);
-                new UserView(user);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 2: {
 
@@ -179,8 +168,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject2(num, misNum, subject);
-                new UserView(user);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 3: {
 
@@ -197,8 +186,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject2(num, misNum, subject);
-                new UserView(user);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 4: {
 
@@ -215,8 +204,8 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject2(num, misNum, subject);
-                new UserView(user);
+                misSubject(num, misNum, subject);
+                break;
             }
             case 5: {
                 for (int i = 0; i < num; i++) {
@@ -232,23 +221,27 @@ public class UserView {
                         subjectService.save(subject[i], user);
                     }
                 }
-                misSubject2(num, misNum, subject);
-                new UserView(user);
+                misSubject(num, misNum, subject);
+                break;
             }
         }
         new UserView(user);
     }
-
-    private static void misSubject2(int num, int misNum, Subject[] subject) {
-        System.out.println("---------------");
-        System.out.println("一共错了" + misNum + "题,分别是：");
-        for (int i = 0; i < num; i++) {
-            if (subject[i].num != 0) {
-                System.out.println(subject[i].showMis() + "=" + subject[i].misAnswer + " -->(" + subject[i].getAnswer() + ")");
+    private static void misSubject(int num, int misNum, Subject[] subject) {
+        System.out.println(line);
+        if (misNum == 0) {
+            System.out.println("恭喜你全部做对！");
+            System.out.println(line);
+        } else {
+            System.out.println("一共错了" + misNum + "题,分别是：");
+            for (int i = 0; i < num; i++) {
+                if (subject[i].num != 0) {
+                    System.out.println(subject[i].showMis() + "=" + subject[i].misAnswer + " -->(" + subject[i].getAnswer() + ")");
+                }
             }
+            System.out.println(line);
         }
     }
-
 }
 
 

@@ -67,23 +67,19 @@ public class LoginView {
             String password = String.valueOf(passwordText.getPassword());
             User user = userService.login(accountNumber, password);
             if (user != null) {  //用户存在，登录成功，跳转页面
-                //弹出登录成功的窗口
                 JOptionPane.showMessageDialog(null, "登陆成功", "登陆成功", JOptionPane.NO_OPTION);
-                //点击确定后会跳转到主窗口
                 frame.setVisible(false);
-                new UserView(user); //进入用户界面
+                new UserView(user);
             } else {  //登录失败，账号或者密码错误，弹出提示
                 JOptionPane.showMessageDialog(null, "账号或密码错误", "账号或密码错误", JOptionPane.WARNING_MESSAGE);
-                //清除密码框中的信息
                 passwordText.setText("");
-                //清除账号框中的信息
                 accountNumberText.setText("");
             }
         });
 
         buttonRegisterUser.addActionListener(e -> {
-            frame.setVisible(false);//关闭登录页面
-            new RegisterView();//进入注册页面
+            frame.setVisible(false);
+            new RegisterView();
         });
 
         retrievePassword.addActionListener(e -> {

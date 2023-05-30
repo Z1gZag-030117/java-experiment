@@ -26,7 +26,7 @@ public class UserServiceImpl extends JPanel implements UserService {
     @Override
     public User login(String account, String password) {
         User user = mapper.select(account, password);
-        sqlSession.close();
+        //sqlSession.close();
         return user;
     }
 
